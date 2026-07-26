@@ -1,0 +1,53 @@
+{
+  "name": "Redesign",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "before_image_url": {
+      "type": "string"
+    },
+    "after_image_url": {
+      "type": "string"
+    },
+    "room_type": {
+      "type": "string"
+    },
+    "style": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "before_image_url",
+    "after_image_url"
+  ],
+  "rls": {
+    "create": null,
+    "read": null,
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}
